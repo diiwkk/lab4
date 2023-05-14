@@ -8,18 +8,25 @@ public class myhashtable<K, V> {
             this.key = key;
             this.value = value;
         }
+
         @Override
-        public String toString(){
+        public String toString() {
             return "{" + key + " " + value + "}";
         }
     }
+
     private HashNode<K, V>[] chainArray;
     private int M = 11;
     private int size;
 
-    public myhashtable(){
+    public myhashtable() {
         this.chainArray = new HashNode[M];
         this.size = 0;
     }
 
+    public myhashtable(int M) {
+        this.M = M;
+        this.chainArray = new HashNode[M];
+        this.size = 0;
+    }
 }
