@@ -50,7 +50,20 @@ public class myhashtable<K, V> {
         size++;
     }
 
-    public V remove(K key) { //Removes a key-value pair from the hash table based on the given key 'key'
+    //calculates the hash coed, and returns an index of the bucket where a key-value pair should be stored.
+    public V get(K key) { // Retrieves the value associated with a given key 'key'
+        int hash = hash(key);
+        HashNode<K, V> node = chainArray[hash];
+        while (node != null) {
+            if (node.key.equals(key)) {
+                return node.value;
+            }
+            node = node.next;
+        }
+        return null;
+    }
+
+    public V remove(K key) {
         int hash = hash(key);
         HashNode<K, V> node = chainArray[hash];
         HashNode<K, V> prev = null;
@@ -69,5 +82,4 @@ public class myhashtable<K, V> {
         }
         return null;
     }
-
 }
