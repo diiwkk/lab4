@@ -13,5 +13,13 @@ public class myhashtable<K, V> {
             return "{" + key + " " + value + "}";
         }
     }
+    private HashNode<K, V>[] chainArray;
+    private int M = 11;
+    private int size;
+
+    public myhashtable(){
+        this.chainArray = new HashNode[M];
+        this.size = 0;
+    }
 
 }
