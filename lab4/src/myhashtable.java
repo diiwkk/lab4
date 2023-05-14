@@ -49,4 +49,25 @@ public class myhashtable<K, V> {
         chainArray[hash] = newNode;
         size++;
     }
+
+    public V remove(K key) { //Removes a key-value pair from the hash table based on the given key 'key'
+        int hash = hash(key);
+        HashNode<K, V> node = chainArray[hash];
+        HashNode<K, V> prev = null;
+        while (node != null) {
+            if (node.key.equals(key)) {
+                if (prev != null) {
+                    prev.next = node.next;
+                } else {
+                    chainArray[hash] = node.next;
+                }
+                size--;
+                return node.value;
+            }
+            prev = node;
+            node = node.next;
+        }
+        return null;
+    }
+
 }
