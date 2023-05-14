@@ -1,4 +1,4 @@
-public class myhashtable<K, V> {
+public class muhashtable<K, V>  {
     private class HashNode<K, V> {
         private K key;
         private V value;
@@ -19,18 +19,18 @@ public class myhashtable<K, V> {
     private int M = 11;
     private int size;
 
-    public myhashtable() {
+    public muhashtable() {
         this.chainArray = new HashNode[M];
         this.size = 0;
     }
 
-    public myhashtable(int M) {
+    public muhashtable(int M) {
         this.M = M;
         this.chainArray = new HashNode[M];
         this.size = 0;
     }
 
-    private int hash(K key) {
+    private int hash(K key) { //calculates the hash coed, and returns an index of the bucket where a key-value pair should be stored.
         return (key.hashCode() & 0x7fffffff) % M;
     }
 
@@ -50,7 +50,6 @@ public class myhashtable<K, V> {
         size++;
     }
 
-    //calculates the hash coed, and returns an index of the bucket where a key-value pair should be stored.
     public V get(K key) { // Retrieves the value associated with a given key 'key'
         int hash = hash(key);
         HashNode<K, V> node = chainArray[hash];
@@ -63,7 +62,7 @@ public class myhashtable<K, V> {
         return null;
     }
 
-    public V remove(K key) {
+    public V remove(K key) { //Removes a key-value pair from the hash table based on the given key 'key'
         int hash = hash(key);
         HashNode<K, V> node = chainArray[hash];
         HashNode<K, V> prev = null;
@@ -83,6 +82,7 @@ public class myhashtable<K, V> {
         return null;
     }
 
+
     public boolean contains(V value) { //Checks if a given value value is present in the hash table.
         for (int i = 0; i < M; i++) {
             HashNode<K, V> node = chainArray[i];
@@ -95,17 +95,5 @@ public class myhashtable<K, V> {
         }
         return false;
     }
-
-    public K getKey(V value) {
-        for (int i = 0; i < M; i++) {
-            HashNode<K, V> node = chainArray[i];
-            while (node != null) {
-                if (node.value.equals(value)) {
-                    return node.key;
-                }
-                node = node.next;
-            }
-        }
-        return null;
-    }
 }
+
